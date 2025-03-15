@@ -14,4 +14,4 @@ jobs:
 
     steps:
       - name: check the system tree
-        run: pwd;tree
+        run: tree
