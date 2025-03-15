@@ -16,8 +16,8 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
       
-      - name: print the working directory
-        run: pwd
+      - name: print flutter info
+        run: flutter doctor
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
