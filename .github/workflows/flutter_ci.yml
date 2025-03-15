@@ -1,17 +1,41 @@
-name: Flutter CI
+name: Flutter CI/CD Pipeline
 
 on:
   push:
     branches:
-      - main   # Trigger workflow when code is pushed to the 'main' branch
+      - main
   pull_request:
     branches:
-      - main   # Trigger workflow on pull requests to the 'main' branch
+      - main
 
 jobs:
-  flutter-build:
-    runs-on: ubuntu-latest  # Running the workflow on Ubuntu
+  build_and_test:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: check the system tree
-        run: id;free;df
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.7.2
+          channel: stable
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Static Code Analysis
+        run: flutter analyze
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build APK
+        run: flutter build apk --release
+
+      - name: Upload APK as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
