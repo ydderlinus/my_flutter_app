@@ -39,3 +39,11 @@ jobs:
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Deploy to Google Play (Internal Testing)
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_JSON_KEY }}
+          packageName: com.yourcompany.yourapp
+          releaseFiles: build/app/outputs/flutter-apk/app-release.apk
+          track: internal
+          status: draft   
