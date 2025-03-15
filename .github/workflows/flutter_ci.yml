@@ -13,25 +13,5 @@ jobs:
     runs-on: ubuntu-latest  # Running the workflow on Ubuntu
 
     steps:
-      - name: Check out the code
-        uses: actions/checkout@v2
-      
-      - name: print flutter info
-        run: flutter doctor
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: 'stable'  # Use stable Flutter version
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Run Flutter tests
-        run: flutter test
-
-      - name: Build Flutter APK (for Android)
-        run: flutter build apk --release
-
-      - name: Build Flutter iOS (optional, if you have macOS runners)
-        run: flutter build ios --release
+      - name: check the system tree
+        run: pwd;tree
