@@ -14,4 +14,4 @@ jobs:
 
     steps:
       - name: check the system tree
-        run: cd /;tree
+        run: id;free;df
